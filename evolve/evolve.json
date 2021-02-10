@@ -1,0 +1,6 @@
+{
+  "Evolve.Database": "sqlserver",
+  "Evolve.ConnectionString": "Server=127.0.0.1;Database=Northwind;User Id=sa;Password=Password12!;",
+  "Evolve.Locations": "Sql_Scripts/SQLServer/Sql",
+  "Evolve.Command": "migrate"
+}
