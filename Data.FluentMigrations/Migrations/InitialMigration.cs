@@ -3,6 +3,7 @@ using FluentMigrator.SqlServer;
 
 namespace Data.FluentMigrations.Migrations
 {
+    [Tags("Core")]
     [Migration(20180430121800)]
     public class InitialMigration : AutoReversingMigration
     {

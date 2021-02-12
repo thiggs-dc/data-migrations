@@ -1,11 +1,11 @@
 using Data.FluentMigrations;
-using FluentMigrator.Runner;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Collections.Generic;
 
 namespace API
 {
@@ -22,8 +22,8 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMigrations(Configuration.GetConnectionString("Core"), Env.EnvironmentName);
 
+            services.AddMyMigrator();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -31,11 +31,21 @@ namespace API
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMigrationRunner migrationRunner)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMyMigrator migrator)
         {
+            var migrationConnectionStrings = new Dictionary<string, string[]>()
+            {
+                { Configuration.GetConnectionString(DatabaseType.Core), new[] { DatabaseType.Core } },
+                { Configuration.GetConnectionString(DatabaseType.OrderLog), new [] { DatabaseType.OrderLog }},
+                { Configuration.GetConnectionString(DatabaseType.OrderLog+2), new [] { DatabaseType.OrderLog }}
+            };
             if (env.IsDevelopment())
             {
-                migrationRunner.MigrateUp();
+                foreach (var migration in migrationConnectionStrings)
+                {
+                    migrator.ApplyMigrations(migration.Key, migration.Value);
+                }
+
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "data_migrations_api v1"));
