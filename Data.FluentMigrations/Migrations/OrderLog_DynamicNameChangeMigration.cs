@@ -23,5 +23,4 @@ namespace Data.FluentMigrations.Migrations
             sql.Close();
         }
     }
-
 }

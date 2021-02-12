@@ -16,9 +16,7 @@ namespace Data.FluentMigrations.Migrations
                     .WithColumn("ClientId").AsString()
                     .WithColumn("OrderId").AsString()
                     .WithColumn("FulfillmentDate").AsString();
-
             }
         }
     }
-
 }
