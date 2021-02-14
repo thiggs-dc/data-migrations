@@ -3,37 +3,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace evolve
 {
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly string _connectionString;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, IOptions<ConnectionStrings> options)
         {
             _logger = logger;
+            _connectionString = options.Value.EvolveDb;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // await PreExecuteAsyncInternal(stoppingToken);
-            // try
-            // {
-            //     var cnx = new SqliteConnection(Configuration.GetConnectionString("MyDatabase"));
-            //     var evolve = new Evolve.Evolve(cnx, msg => _logger.LogInformation(msg))
-            //     {
-            //         Locations = new[] { "db/migrations" },
-            //         IsEraseDisabled = true,
-            //     };
-
-            //     evolve.Migrate();
-            // }
-            // catch (Exception ex)
-            // {
-            //     _logger.LogCritical("Database migration failed.", ex);
-            //     throw;
-            // }
+            try
+            {
+                var cnx = new System.Data.SqlClient.SqlConnection(_connectionString);
+                var evolve = new Evolve.Evolve(cnx, msg => _logger.LogInformation(msg))
+                {
+                    Locations = new[] { "migrations", "views" },
+                    IsEraseDisabled = true,
+                };
+                evolve.Migrate();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical("Database migration failed.", ex);
+                throw;
+            }
 
             while (!stoppingToken.IsCancellationRequested)
             {

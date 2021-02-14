@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,7 +21,8 @@ namespace evolve
                     logging.AddConsole();
                 })
                 .UseConsoleLifetime()
-                .ConfigureServices((_, services) => {
+                .ConfigureServices((context, services) => {
+                    services.Configure<ConnectionStrings>(context.Configuration.GetSection("ConnectionStrings"));
                     services.AddHostedService<Worker>();
                 });
     }

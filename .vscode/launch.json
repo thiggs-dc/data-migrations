@@ -14,7 +14,10 @@
       "cwd": "${workspaceFolder}/evolve",
       "console": "internalConsole",
       "stopAtEntry": false,
-      "suppressJITOptimizations": true
+      "suppressJITOptimizations": true,
+      "logging": {
+        "moduleLoad": false
+      }
     }
   ]
 }
