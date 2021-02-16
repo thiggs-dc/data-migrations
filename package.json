@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate-db": ".\\evolve\\evolve migrate sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -p \"orderTable:OrderTable1\""
   },
   "repository": {
     "type": "git",

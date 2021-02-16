@@ -1,5 +1,6 @@
-CREATE OR ALTER VIEW [dbo].[vClient]
+CREATE OR ALTER VIEW [dbo].[vCustomer]
 AS
-  SELECT Name, Id
-  FROM  dbo.Client
+  SELECT c.Name, c.Id,
+  -- (select COUNT(*) from [dbo].[OrderTable1] o where o.CustomerId = c.Id) AS OrderCount
+  FROM  dbo.Customer c
 GO
