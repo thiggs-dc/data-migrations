@@ -1,0 +1,19 @@
+{
+  "name": "data-migrations",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "migrate-db": ".\\evolve\\evolve migrate sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -p \"orderTable:OrderTable1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiggs-dc/data-migrations.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiggs-dc/data-migrations/issues"
+  },
+  "homepage": "https://github.com/thiggs-dc/data-migrations#readme"
+}

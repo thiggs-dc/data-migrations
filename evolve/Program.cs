@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -20,8 +19,9 @@ namespace evolve
                     logging.AddConsole();
                 })
                 .UseConsoleLifetime()
-                .ConfigureServices((_, services) => {
-                    services.AddHostedService<Worker>();
+                .ConfigureServices((context, services) => {
+                    services.Configure<ConnectionStrings>(context.Configuration.GetSection("ConnectionStrings"));
+                    services.AddHostedService<DbMigrator>();
                 });
     }
 }

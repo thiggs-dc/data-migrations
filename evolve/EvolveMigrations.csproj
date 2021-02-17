@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0"/>
     <PackageReference Include="Evolve" Version="2.4.0"/>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2"/>
   </ItemGroup>
   <ItemGroup>
     <Content Include="migrations\**\*.sql">
