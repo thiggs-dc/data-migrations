@@ -5,7 +5,7 @@ namespace Data.FluentMigrations.Migrations
 {
     [Tags("OrderLog")]
     [Migration(201804301219000)]
-    public class OrderLog_DynamicNameChangeMigration : AutoReversingMigration
+    public class OrderLog_DynamicNameChangeMigration : Migration
     {
         public override void Up()
         {
@@ -21,6 +21,10 @@ namespace Data.FluentMigrations.Migrations
                     Rename.Column("FulfillmentDate").OnTable(table).To("FulFilled");
             }
             sql.Close();
+        }
+        public override void Down()
+        {
+            throw new System.NotImplementedException(); 
         }
     }
 }
