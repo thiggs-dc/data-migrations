@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrate-db": ".\\evolve\\evolve migrate sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -p \"orderTable:OrderTable1\""
+    "migrate-db": ".\\evolve\\evolve migrate sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -l \".\\evolve\\views\" -p \"orderTable:OrderTable1\"",
+    "migrate-info": ".\\evolve\\evolve info sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -l \".\\evolve\\views\" -p \"orderTable:OrderTable1\"",
+    "migrate-db-dotnet": "evolve migrate sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -l \".\\evolve\\views\" -p \"orderTable:OrderTable1\"",
+    "migrate-info-dotnet": "evolve info sqlserver -c \"Server=127.0.0.1,1402;Database=EvolveDb;User Id=sa;Password=Your_password123;\" -l \".\\evolve\\migrations\" -l \".\\evolve\\views\" -p \"orderTable:OrderTable1\""
   },
   "repository": {
     "type": "git",

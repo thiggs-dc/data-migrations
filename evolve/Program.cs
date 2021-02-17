@@ -16,6 +16,7 @@ namespace evolve
         static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging => {
+                    logging.ClearProviders();
                     logging.AddConsole();
                 })
                 .UseConsoleLifetime()
