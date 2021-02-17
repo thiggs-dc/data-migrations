@@ -34,7 +34,8 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IMyMigrator migrator)
         {
             var migrationConnectionStrings = new Dictionary<string, string[]>()
-            {
+            {  
+                { Configuration.GetConnectionString(DatabaseType.Master), new[] { DatabaseType.Master } },
                 { Configuration.GetConnectionString(DatabaseType.Core), new[] { DatabaseType.Core } },
                 { Configuration.GetConnectionString(DatabaseType.OrderLog), new [] { DatabaseType.OrderLog }},
                 { Configuration.GetConnectionString(DatabaseType.OrderLog+2), new [] { DatabaseType.OrderLog }}
